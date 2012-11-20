@@ -1,43 +1,11 @@
-QuAdminDemo
-=======
-Version 1.0.0 Created by Cel Ticó Petit
-
-Screen shots
-------------
-
-![QuAdminDemo example screenshot](http://cenics.cat/quadmin1.png)
-![QuAdminDemo example screenshot](http://cenics.cat/quadmin2.png)
-
-Requirements
-------------
-
-* [ZendSkeletonApplication](https://github.com/zendframework/ZendSkeletonApplication)
-* [ZfcBase](https://github.com/ZF-Commons/ZfcBase)
-* [ZfcUser](https://github.com/ZF-Commons/ZfcUser)
-* [WebinoImageThumb](https://github.com/webino/WebinoImageThumb)
-* [CdliUserProfile](https://github.com/cdli/CdliUserProfile)
-* [QuElFinder](https://github.com/Celtico/QuElFinder)
-* [QuCKEditor](https://github.com/Celtico/QuCKEditor)
-* [QuAdmin](https://github.com/Celtico/QuAdmin)
-
-Installation
-------------
-
-* Drag the folder into modules folder or vendor folder
-* Enable the module with the application.config.php, placing QuAdmin QuAdminDemo and in last place
-* Load table data folder in the database
-* Move the public folder directory
-
-See the [Zend\Db\Adapter](http://framework.zend.com/manual/2.0/en/modules/zend.db.adapter.html)
-documentation for more info on how to configure the adapter for your specific database.
-
-Configuring custom settings in QuAdminDemo module
---------------------------------------------
-
-Example:
-
-```php
 <?php
+/**
+ * @Author: Cel Ticó Petit
+ * @Contact: cel@cenics.net
+ * @Company: Cencis s.c.p.
+ */
+
+return array(
 
     // Your Dashboard
     'controllers' => array(
@@ -47,11 +15,11 @@ Example:
     ),
     'router' => array(
         'routes' => array(
-            'demo' => array(
+            'admin-demo' => array(
                 'type' => 'Literal',
                 'priority' => 1000,
                 'options' => array(
-                    'route' => '/demo',
+                    'route' => '/admin-demo',
                     'defaults' => array(
                         'lang'          => 'es',
                         'controller'    => 'QuDashboard',
@@ -76,7 +44,6 @@ Example:
                                 'lang'          => 'es',
                                 'controller'    => 'QuAdminFactory',
                                 'action'        => 'index',
-
                             ),
                         ),
                     ),
@@ -94,7 +61,6 @@ Example:
                                 'lang'          => 'es',
                                 'controller'    => 'QuAdminFactory',
                                 'action'        => 'index',
-
                             ),
                         ),
                     ),
@@ -108,9 +74,9 @@ Example:
                                 'id_parent' => '[0-9]+',
                             ),
                             'defaults' => array(
+                                'lang'          => '',
                                 'controller'    => 'QuAdminFactory',
                                 'action'        => 'index',
-
                             ),
                         ),
                     ),
@@ -124,6 +90,7 @@ Example:
                                 'id_parent' => '[0-9]+',
                             ),
                             'defaults' => array(
+                                'lang'          => '',
                                 'controller'    => 'QuAdminFactory',
                                 'action'        => 'index',
                             ),
@@ -148,35 +115,35 @@ Example:
     // QuAdmin Navigation
     'navigation' => array(
         'QuNavigation' => array(
-            'demo' => array(
+            'admin-demo' => array(
 
                  // Your index dashboard
                 'label' => 'Your QuAdminDemo',
-                'route' => 'demo',
+                'route' => 'admin-demo',
                 'pages' => array(
 
                     // Load PageEditors in sub menu QuAdmin
                     'TestDemo' => array(
                         'label' => 'Test demo',
-                        'route' => 'demo/TestDemo',
+                        'route' => 'admin-demo/TestDemo',
                     ),
                     'TestDemo2' => array(
                         'label' => 'Test demo 2',
-                        'route' => 'demo/TestDemo2',
+                        'route' => 'admin-demo/TestDemo2',
                     ),
                     'Parameters' => array(
                         'label' => 'Parameters',
-                        'route' => 'demo/Parameters',
+                        'route' => 'admin-demo/Parameters',
                     ),
                     'Languages' => array(
                         'label' => 'Languages',
-                        'route' => 'demo/Languages',
+                        'route' => 'admin-demo/Languages',
                     ),
 
                     // Load module in sub menu QuAdmin
                     'QuElFinder' => array(
                         'label' => 'File Manager',
-                        'route' => 'demo/QuElFinder',
+                        'route' => 'admin-demo/QuElFinder',
                     ),
                 ),
             ),
@@ -195,8 +162,6 @@ Example:
                     ),
                 ),
             ),
-            //Recommended
-            /*
             'cgmconfigadmin' => array(
                 'label' => 'Config Admin',
                 'route' => 'cgmconfigadmin',
@@ -207,7 +172,7 @@ Example:
                     ),
                 ),
             ),
-            */
+
         ),
     ),
 
@@ -216,48 +181,44 @@ Example:
 
          // Control Layout Modules
          'QuLayout'=>array(
-            'QuAdminDemo'            =>'theme/layout/demo',
-            'QuAdmin'           =>'theme/layout/demo',
-            'QuElFinder'        =>'theme/layout/demo',
-            'CdliUserProfile'   =>'theme/layout/demo',
-            //Set layout login
+            'QuAdminDemo'       =>'theme/layout/admin-demo',
+            'QuAdmin'           =>'theme/layout/admin-demo',
+            'QuElFinder'        =>'theme/layout/admin-demo',
+            'CdliUserProfile'   =>'theme/layout/admin-demo',
             'ZfcUser'           =>'theme/layout/login',
-            //Recommended
-            //'CgmConfigAdmin'    =>'theme/layout/demo',
+            'CgmConfigAdmin'    =>'theme/layout/admin-demo',
+
          ),
 
          // Control Base Path Modules
          'QuBasePath'=>array(
-            'QuAdminDemo'            =>'/qu-demo',
-            'QuAdmin'           =>'/qu-demo',
-            'QuElFinder'        =>'/qu-demo',
-            'QuCKEditor'        =>'/qu-demo',
-            'ZfcUser'           =>'/qu-demo',
-            'CdliUserProfile'   =>'/qu-demo',
-            //Recommended
-             //'CgmConfigAdmin'    =>'/qu-demo',
+            'QuAdminDemo'       =>'/qu-admin-demo',
+            'QuAdmin'           =>'/qu-admin-demo',
+            'ZfcUser'           =>'/qu-admin-demo',
+            'CdliUserProfile'   =>'/qu-admin-demo',
+            'CgmConfigAdmin'    =>'/qu-admin-demo',
          ),
 
          // Config QuPhpThumb
          'QuPhpThumb'=>array(
-             'QuBasePath'       => dirname(dirname(dirname(__DIR__))) .'/web/uploads/files',
+             'QuBasePath'       => dirname(dirname(dirname(__DIR__))) .'/public/uploads/files',
              'QuBaseURL'        =>'/uploads/files',
          ),
 
-         // Config Redirect login
+         // Config Redirect login and set layout login
          'QuRedirectLogin'=>array(
-            'QuAdminDemo'            =>true,
+            'QuAdminDemo'       =>true,
             'QuAdmin'           =>true,
             'QuElFinder'        =>true,
             'QuCKEditor'        =>true,
             'ZfcUser'           =>true,
             'CdliUserProfile'   =>true,
-             //'CgmConfigAdmin' =>true,
+            'CgmConfigAdmin'    =>true,
          ),
 
           // Template By Route Match
          'QuTemplate'=>array(
-            'QuAdminDemo'      => 'RouteMatch',
+            'QuAdminDemo' => 'RouteMatch',
             'QuAdmin'     => 'RouteMatch'
           ),
 
@@ -275,11 +236,11 @@ Example:
                 'URL'           =>  '/uploads/files/',
                 'accessControl' => 'access'
             ),
-            'QuBasePath'=>'../qu-admin/js/plugins/elfinder',
+            'QuBasePath'=>'/qu-admin-demo/js/plugins/elfinder',
         ),
 
         'QuCKEditor' => array(
-            'QuBasePath' =>'/qu-admin/js/plugins/ckeditor',
+            'QuBasePath' =>'/qu-admin-demo/js/plugins/ckeditor',
         ),
     ),
 
@@ -290,4 +251,3 @@ Example:
     ),
 
 );
-```
