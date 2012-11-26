@@ -1,5 +1,5 @@
 {
-    "name": "qu/admindemo",
+    "name": "qu-modules/qu-admindemo",
     "description": "ZF2 QuAdminDemo",
     "type": "module",
     "version":"0.0.1-dev",
