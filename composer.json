@@ -1,13 +1,9 @@
 {
     "name": "qu/admindemo",
     "description": "ZF2 QuAdminDemo",
-    "version":"1.0.0-dev",
-    "keywords": [
-        "demo",
-        "admin",
-        "zf2",
-        "app"
-    ],
+    "type": "module",
+    "version":"0.0.1-dev",
+    "keywords": ["demo","admin", "zf2","app"],
     "homepage": "https://github.com/Celtico/QuAdminDemo/",
     "license": "BSD-3-Clause",
     "require": {
@@ -24,5 +20,13 @@
     ],
     "support": {
         "email": "cel@cenics.net"
+    },
+    "autoload": {
+        "psr-0": {
+            "QuAdminDemo": "src/"
+        },
+        "classmap": [
+            "./Module.php"
+        ]
     }
 }
