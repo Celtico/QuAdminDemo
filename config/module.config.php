@@ -79,12 +79,12 @@ return array(
                     'web' => array(
                         'icon'  => '&#xe264;',
                         'label' => 'Demo Web',
-                        'uri'    => 'http://qumodules.com/web-demo',
+                        'route'    => 'web-demo/web-demo',
                     ),
                     'qumodules' => array(
                         'icon'  => '&#xe033;',
                         'label' => 'Qu Modules',
-                        'uri'    => 'http://qumodules.com',
+                        'route' => 'home',
                     ),
 
                 ),
