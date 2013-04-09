@@ -9,7 +9,7 @@ namespace QuAdminDemo\Controller;
 
 use QuAdmin\Controller\AbstractController;
 
-class QuAdminDemo extends AbstractController
+class QuAdminDemoController extends AbstractController
 {
 
     protected  $qu_admin_service;

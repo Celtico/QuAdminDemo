@@ -22,7 +22,7 @@ return array(
                     'route' => '/admin-demo',
                     'defaults' => array(
                         'lang'          => 'es',
-                        'controller'    => 'QuDashboard',
+                        'controller'    => 'QuAdminDemo',
                         'action'        => 'index',
                     ),
                 ),
@@ -30,7 +30,7 @@ return array(
                 'child_routes' => array(
 
                     // Load Editors in QuControllerFactory
-                    'TestDemo' => array(
+                    'test_route' => array(
                         'type'    => 'segment',
                         'options' => array(
                             'route' => '[/:lang]/testdemo[/:action][/:id][/:id_parent]',
@@ -69,14 +69,14 @@ return array(
             'admin-demo' => array(
                 'icon'  => '&#xe276;',
                 'label' => 'Qu Admin Demo',
-                'route' => 'admin-demo/TestDemo',
+                'route' => 'admin-demo/test_route',
                 'pages' => array(
-                    'categories' => array(
+                    'test_route' => array(
                         'icon'  => '&#xe221;',
                         'label' => 'Demo Editor',
-                        'route' => 'admin-demo/TestDemo',
+                        'route' => 'admin-demo/test_route',
                     ),
-                    'web' => array(
+                    'web-demo' => array(
                         'icon'  => '&#xe264;',
                         'label' => 'Demo Web',
                         'route'    => 'web-demo',
