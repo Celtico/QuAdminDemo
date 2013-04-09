@@ -79,7 +79,7 @@ return array(
                     'web' => array(
                         'icon'  => '&#xe264;',
                         'label' => 'Demo Web',
-                        'route'    => 'web-demo/web-demo',
+                        'route'    => 'web-demo',
                     ),
                     'qumodules' => array(
                         'icon'  => '&#xe033;',
