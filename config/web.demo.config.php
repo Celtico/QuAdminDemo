@@ -72,9 +72,9 @@ return array(
             'tableName'            => 'qu-plupload',
             'DirUpload'          => '/uploads/files/web-demo',
             //In Module
-            'DirUploadAbsolute'  =>  dirname(dirname(dirname(__DIR__)))  . '/web/uploads/files/web-demo',
+            //'DirUploadAbsolute'  =>  dirname(dirname(dirname(__DIR__)))  . '/web/uploads/files/web-demo',
             //In Vendor
-           // 'DirUploadAbsolute'  => dirname(dirname(dirname(dirname(__DIR__))))  . '/web/uploads/files/web-demo',
+           'DirUploadAbsolute'  => dirname(dirname(dirname(dirname(__DIR__))))  . '/web/uploads/files/web-demo',
             'Resize'             => array('1200','900'), //$width, $height
             'ThumbResize'        => array(
 
