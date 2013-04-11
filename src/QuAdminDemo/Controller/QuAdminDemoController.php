@@ -19,7 +19,6 @@ class QuAdminDemoController extends AbstractController
     public function indexAction(){
         $this->getQuAdminService();
         $quAdmin = $this->qu_admin_service->getIndex();
-        $quAdmin->setQuAdminModelOptions($this->qu_web_demo_model);
         return $quAdmin->getViewModel();
     }
 
@@ -28,7 +27,6 @@ class QuAdminDemoController extends AbstractController
     {
         $this->getQuAdminService();
         $quAdmin = $this->qu_admin_service->getAjax();
-        $quAdmin->setQuAdminModelOptions($this->qu_web_demo_model);
         return $quAdmin->getViewModel();
     }
 
@@ -37,7 +35,6 @@ class QuAdminDemoController extends AbstractController
     {
         $this->getQuAdminService();
         $quAdmin = $this->qu_admin_service->getAdd();
-        $quAdmin->setQuAdminModelOptions($this->qu_web_demo_model);
         return $quAdmin->getViewModel();
     }
 
@@ -46,7 +43,6 @@ class QuAdminDemoController extends AbstractController
     {
         $this->getQuAdminService();
         $quAdmin = $this->qu_admin_service->getEdit();
-        $quAdmin->setQuAdminModelOptions($this->qu_web_demo_model);
         return $quAdmin->getViewModel();
     }
 
@@ -56,7 +52,6 @@ class QuAdminDemoController extends AbstractController
     {
         $this->getQuAdminService();
         $quAdmin = $this->qu_admin_service->getDuplicate();
-        $quAdmin->setQuAdminModelOptions($this->qu_web_demo_model);
         return $quAdmin->getViewModel();
     }
 
@@ -65,13 +60,37 @@ class QuAdminDemoController extends AbstractController
     {
         $this->getQuAdminService();
         $quAdmin = $this->qu_admin_service->getDelete();
-        $quAdmin->setQuAdminModelOptions($this->qu_web_demo_model);
         return $quAdmin->getViewModel();
     }
 
+    public function uploadAction()
+    {
+        $this->getQuAdminService();
+        $quAdmin = $this->qu_admin_service->getUpload();
+        return $quAdmin->getViewModel();
+    }
+    public function loadAction()
+    {
+        $this->getQuAdminService();
+        $quAdmin = $this->qu_admin_service->getUpload();
+        return $quAdmin->loadAction();
+    }
+    public function removeAction()
+    {
+        $this->getQuAdminService();
+        $quAdmin = $this->qu_admin_service->getUpload();
+        return $quAdmin->removeAction();
+    }
+
+
     public function getQuAdminService(){
-        $this->qu_admin_service    = $this->getServiceLocator()->get('qu_admin_service');
-        $this->qu_web_demo_model = $this->getServiceLocator()->get('qu_web_demo_model');
+
+        $this->qu_admin_service = $this->getServiceLocator()->get('qu_admin_service');
+        $this->qu_admin_service->setQuAdminModelOptions(
+            $this->getServiceLocator()->get('qu_web_demo_model')
+        );
+
         return $this;
     }
+
 }

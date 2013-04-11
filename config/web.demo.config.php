@@ -66,8 +66,34 @@ return array(
         'linkerParent'      => true,
         'optionsPaginator'  => array('n'=>10,'p'=>1),
         'defaultLanguage'   => 'es',
-        'documents'         => true,
         'optionsOrder'      => 'order desc',
+
+        'documents'         =>  array(
+            'tableName'            => 'qu-plupload',
+            'DirUpload'          => '/uploads/files/web-demo',
+            //In Module
+            'DirUploadAbsolute'  =>  dirname(dirname(dirname(__DIR__)))  . '/web/uploads/files/web-demo',
+            //In Vendor
+           // 'DirUploadAbsolute'  => dirname(dirname(dirname(dirname(__DIR__))))  . '/web/uploads/files/web-demo',
+            'Resize'             => array('1200','900'), //$width, $height
+            'ThumbResize'        => array(
+
+                /* Properties  GdThumb Class Definition
+
+                public function resize ($maxWidth = 0, $maxHeight = 0)
+                public function adaptiveResize ($width, $height)
+                public function resizePercent ($percent = 0)
+                public function cropFromCenter ($cropWidth, $cropHeight = null)
+                public function crop ($startX, $startY, $cropWidth, $cropHeight)
+
+                */
+
+                'xl' => array('resize','1170','420'),
+                'l'  => array('resize','600','550'),
+                'm'  => array('resize','500','418'),
+                's'  => array('adaptiveResize','30','20'),
+            ),
+        ),
 
         /**
          *
