@@ -122,26 +122,6 @@ return array(
                     'attributes' => array('span' =>'span3',
                     ),
                 ),
-            ),
-            /**
-             * Complete serialized
-             *
-             * key group name
-             * for example, a minimum description
-             */
-            'GroupCenter' => array(
-                'serialized' => false,
-                'fieldset'=> array(
-                    'type' =>'Zend\Form\Fieldset',
-                    'name' => 'cont',
-                    'options' => array(
-                        'label' => 'Pàgine',
-                    ),
-                ),
-
-
-
-
                 /**
                  * key
                  * for example input name
@@ -265,6 +245,22 @@ return array(
                                 ),
                             ),
                         ),
+                    ),
+                ),
+            ),
+            /**
+             * Complete serialized
+             *
+             * key group name
+             * for example, a minimum description
+             */
+            'GroupCenter' => array(
+                'serialized' => false,
+                'fieldset'=> array(
+                    'type' =>'Zend\Form\Fieldset',
+                    'name' => 'cont',
+                    'options' => array(
+                        'label' => 'Pàgine',
                     ),
                 ),
 
