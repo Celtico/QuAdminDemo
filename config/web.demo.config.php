@@ -28,20 +28,23 @@ return array(
         'entity'               => 'QuAdminDemo\Entity\QuAdminDemo',
         'tableKeyFields'       => array(
 
-            'KeyId'            => 'id_web',
-            'KeyName'          => 'name',
-            'KeyTitle'         => 'title',
+            'key_id'            => 'id_categories',
+            'key_name'          => 'name',
+            'key_title'         => 'title',
 
-            'KeyIdParent'      => 'id_parent',
-            'KeyIdLangLinker'  => 'id_lang',
-            'KeyIdAuthor'      => 'id_author',
-            'KeyLang'          => 'lang',
+            'key_id_parent'     => 'id_parent',
+            'key_id_lang'       => 'id_lang',
+            'key_id_author'     => 'id_author',
+            'key_lang'          => 'lang',
 
-            'KeyDate'          => 'date',
-            'KeyModified'      => 'modified',
-            'KeyStatus'        => 'status',
+            'key_date'          => 'date',
+            'key_modified'      => 'modified',
+            'key_status'        => 'status',
 
-            'KeyOrder'         => 'order',
+            'key_order'         => 'order',
+
+            'key_level'         => false,
+            'key_path'          => false,
         ),
 
         'tableFieldsCleanData'=> array(
