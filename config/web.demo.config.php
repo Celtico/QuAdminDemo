@@ -4,6 +4,8 @@
  * @Contact: cel@cenics.net
  * @Company: Cencis s.c.p.
  */
+
+
 return array(
 
 
@@ -28,7 +30,7 @@ return array(
         'entity'               => 'QuAdminDemo\Entity\QuAdminDemo',
         'tableKeyFields'       => array(
 
-            'key_id'            => 'id_categories',
+            'key_id'            => 'id_web',
             'key_name'          => 'name',
             'key_title'         => 'title',
 
@@ -77,7 +79,7 @@ return array(
             //In Module
             'DirUploadAbsolute'  =>  dirname(dirname(dirname(__DIR__)))  . '/web/uploads/files/web-demo',
             //In Vendor
-           // 'DirUploadAbsolute'  => dirname(dirname(dirname(dirname(__DIR__))))  . '/web/uploads/files/web-demo',
+           //'DirUploadAbsolute'  => dirname(dirname(dirname(dirname(__DIR__))))  . '/public/uploads/files/web-demo',
             'Resize'             => array('1200','900'), //$width, $height
             'ThumbResize'        => array(
 
