@@ -330,29 +330,20 @@ return array(
                  * key form
                  * for example input name
                  */
-                'notes' => array(
+                'icon' => array(
                     //form zf2 standard for reused
                     'form' => array(
-                        'name'     => 'notes',
-                        'options' => array('label' => 'notes'),
+                        'name'     => 'icon',
+                        'options' => array('label' => 'Icon'),
                         'attributes' => array(
-                            'type'  => 'text',
-                            'class'=>'span12',
+                            'type'  => 'hidden',
+                            'span'=>'span3', 'class'=>'span12',
+                            'id'=>'icon',
                         ),
                     ),
                     //filter zf2 standard for reused
-                    'filter' => array('name' => 'notes',
+                    'filter' => array('name' => 'icon',
                         'required' => false,
-                        'filters'  => array(
-                            array('name' => 'StripTags'),
-                            array('name' => 'StringTrim'),
-                        ),
-                        'validators' => array(
-                            array(
-                                'name'=>'StringLength',
-                                'options'=> array('encoding' => 'UTF-8','min'=> 1,),
-                            ),
-                        ),
                     ),
                 ),
 
