@@ -47,6 +47,8 @@ return array(
 
             'key_level'         => false,
             'key_path'          => false,
+
+            'key_icon'         => 'icon',
         ),
 
         'tableFieldsCleanData'=> array(
@@ -64,7 +66,7 @@ return array(
             'title',
             'summary',
             'content',
-            'notes',
+            'icon',
         ),
 
         'linkerModels'      => false,
