@@ -6,9 +6,36 @@
  */
 namespace QuAdminDemo;
 
-class Module
+use Zend\EventManager\EventInterface;
+use Zend\ModuleManager\Feature\BootstrapListenerInterface;
+
+class Module implements BootstrapListenerInterface
 {
 
+    /**
+     * Listen to the bootstrap event
+     *
+     * @param EventInterface $e
+     * @return array
+     */
+    public function onBootstrap(EventInterface $e)
+    {
+        $app        = $e->getApplication();
+        $em         = $app->getEventManager();
+
+        $event = $em->getSharedManager();
+
+        $event->attach('QuAdmin\Form\QuForm', 'postEventFormFilter.content', function($e){
+            $data = $e->getParams();
+            return stripslashes( $data['content'] );
+        }, 1);
+
+        $event->attach('QuAdmin\Form\QuForm', 'postEventFormFilter.summary', function($e){
+            $data = $e->getParams();
+            return stripslashes( $data['summary'] );
+        }, 1);
+
+    }
     public function getServiceConfig()
     {
         return array(

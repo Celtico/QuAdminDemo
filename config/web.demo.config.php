@@ -324,7 +324,7 @@ return array(
                 'serialized' => false,
                 'fieldset'=> array(
                     'type' =>'Zend\Form\Fieldset',
-                    'name' => 'summary',
+                    'name' => 'GroupSummary',
                     'options' => array(
                         'label' => 'Summary',
                     ),
@@ -363,7 +363,7 @@ return array(
                 'serialized' => false,
                 'fieldset'=> array(
                     'type' =>'Zend\Form\Fieldset',
-                    'name' => 'content',
+                    'name' => 'GroupContent',
                     'options' => array(
                         'label' => 'Content',
                     ),
