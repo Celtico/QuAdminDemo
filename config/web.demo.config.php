@@ -119,9 +119,13 @@ return array(
                 'serialized' => false,
                 'fieldset' => array(
                     'type' =>'Zend\Form\Fieldset',
-                    'name' => 'p',
-                    'options' => array('label'=>'Parametres'),
-                    'attributes' => array('span' =>'span3',
+                    'name' => 'parametres',
+                    'options' => array(
+                        'label'=>'Parametres'
+                    ),
+                    'attributes' => array(
+                        'span' =>'span3',
+                        'class' =>'fieldset-collapse',
                     ),
                 ),
                 /**
@@ -152,6 +156,51 @@ return array(
                     'filter' => array('name'=> 'status','required' => false,),
                 ),
 
+
+                'name' => array(
+                    'form' => array(
+                        'name'     => 'name',
+                        'options' => array(
+                            'label' => 'Name',
+                        ),
+                        'attributes' => array(
+                            'type'  => 'text',
+                            'span'=>'span3', 'class'=>'span12',
+                        ),
+                    ),
+                    'filter' => array(
+                        'name'     => 'name',
+                        'required' => false,
+                        'filters'  => array(
+                            array('name' => 'StripTags'),
+                            array('name' => 'StringTrim'),
+                        ),
+                        'validators' => array(
+                            array(
+                                'name'    => 'StringLength',
+                                'options' => array(
+                                    'encoding' => 'UTF-8',
+                                    'min'      => 1,
+                                    'max'      => 200,
+                                ),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+            'GroupLinkers' => array(
+                'serialized' => false,
+                'fieldset'=> array(
+                    'type' =>'Zend\Form\Fieldset',
+                    'name' => 'linkers',
+                    'options' => array(
+                        'label' => 'Linkers',
+                    ),
+                    'attributes' => array(
+                        'span' =>'span3',
+                        'class' =>'',
+                    ),
+                ),
                 'id_parent' => array(
                     //form zf2 standard for reused
                     'form' => array(
@@ -217,52 +266,35 @@ return array(
                         'order' => 'order asc',
                     ),
                 ),
-
-
-                'name' => array(
+                /**
+                 * key form
+                 * for example input name
+                 */
+                'icon' => array(
+                    //form zf2 standard for reused
                     'form' => array(
-                        'name'     => 'name',
-                        'options' => array(
-                            'label' => 'Name',
-                        ),
+                        'name'     => 'icon',
+                        'options' => array('label' => 'Icon'),
                         'attributes' => array(
-                            'type'  => 'text',
+                            'type'  => 'hidden',
                             'span'=>'span3', 'class'=>'span12',
+                            'id'=>'icon',
                         ),
                     ),
-                    'filter' => array(
-                        'name'     => 'name',
+                    //filter zf2 standard for reused
+                    'filter' => array('name' => 'icon',
                         'required' => false,
-                        'filters'  => array(
-                            array('name' => 'StripTags'),
-                            array('name' => 'StringTrim'),
-                        ),
-                        'validators' => array(
-                            array(
-                                'name'    => 'StringLength',
-                                'options' => array(
-                                    'encoding' => 'UTF-8',
-                                    'min'      => 1,
-                                    'max'      => 200,
-                                ),
-                            ),
-                        ),
                     ),
                 ),
+
             ),
-            /**
-             * Complete serialized
-             *
-             * key group name
-             * for example, a minimum description
-             */
             'GroupCenter' => array(
                 'serialized' => false,
                 'fieldset'=> array(
                     'type' =>'Zend\Form\Fieldset',
                     'name' => 'cont',
                     'options' => array(
-                        'label' => 'Pàgine',
+                        'label' => 'Categories',
                     ),
                 ),
 
@@ -287,6 +319,20 @@ return array(
 
                     ),
                 ),
+            ),
+            'GroupSummary' => array(
+                'serialized' => false,
+                'fieldset'=> array(
+                    'type' =>'Zend\Form\Fieldset',
+                    'name' => 'summary',
+                    'options' => array(
+                        'label' => 'Summary',
+                    ),
+                    'attributes' => array(
+                        'class' =>'',
+
+                    ),
+                ),
                 /**
                  * key form
                  * for example input name
@@ -300,12 +346,26 @@ return array(
                         ),
                         'attributes' => array(
                             'type' => 'textarea',
-                            'class'=>'CkEditor','id'=>'editor'
+                            'id'=>'editor',
+                            'ck-editor'=>array(
+                                'tools'=>'medium',
+                                'height'=>'100',
+                            ),
                         ),
                     ),
                     'filter' => array(
                         'name' => 'summary',
                         'required' => false,
+                    ),
+                ),
+            ),
+            'GroupContent' => array(
+                'serialized' => false,
+                'fieldset'=> array(
+                    'type' =>'Zend\Form\Fieldset',
+                    'name' => 'content',
+                    'options' => array(
+                        'label' => 'Content',
                     ),
                 ),
                 /**
@@ -319,7 +379,11 @@ return array(
                         'options' => array('label' => 'content'),
                         'attributes' => array(
                             'type' => 'textarea',
-                            'class'=>'CkEditor','id'=>'editor2'
+                            'id'=>'editor2',
+                            'ck-editor'=>array(
+                                'tools'=>'large',
+                                'height'=>'250',
+                            ),
                         ),
                     ),
                     //filter zf2 standard for reused
@@ -328,28 +392,10 @@ return array(
                         'required' => false,
                     ),
                 ),
-                /**
-                 * key form
-                 * for example input name
-                 */
-                'icon' => array(
-                    //form zf2 standard for reused
-                    'form' => array(
-                        'name'     => 'icon',
-                        'options' => array('label' => 'Icon'),
-                        'attributes' => array(
-                            'type'  => 'hidden',
-                            'span'=>'span3', 'class'=>'span12',
-                            'id'=>'icon',
-                        ),
-                    ),
-                    //filter zf2 standard for reused
-                    'filter' => array('name' => 'icon',
-                        'required' => false,
-                    ),
-                ),
+
 
             ),
+
 
             /**
              * Out config form
