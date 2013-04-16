@@ -11,6 +11,7 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'QuAdminDemo' => 'QuAdminDemo\Controller\QuAdminDemoController',
+            'other_demo_controller' => 'QuAdminDemo\Controller\QuOtherDemoController',
         ),
     ),
     'router' => array(
@@ -47,6 +48,24 @@ return array(
                             ),
                         ),
                     ),
+                    // Load Editors in QuControllerFactory
+                    'other_demo_route' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route' => '[/:lang]/other[/:action][/:id][/:id_parent]',
+                            'constraints' => array(
+                                'lang'      => '[a-z]{2}(-[A-Z]{2}){0,1}',
+                                'action'    => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id'        => '[0-9]+',
+                                'id_parent' => '[0-9]+',
+                            ),
+                            'defaults' => array(
+                                'lang'          => 'es',
+                                'controller'    => 'other_demo_controller',
+                                'action'        => 'index',
+                            ),
+                        ),
+                    ),
 
                 ),
             ),
@@ -75,6 +94,11 @@ return array(
                         'icon'  => '&#xe221;',
                         'label' => 'Demo Editor',
                         'route' => 'admin-demo/test_route',
+                    ),
+                    'other' => array(
+                        'icon'  => '&#xe02e;',
+                        'label' => 'Other Editor',
+                        'route' => 'admin-demo/other_demo_route',
                     ),
                     'web-demo' => array(
                         'icon'  => '&#xe264;',

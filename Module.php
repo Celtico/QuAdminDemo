@@ -17,6 +17,10 @@ class Module
                     $config = $sm->get('Config');
                     return new \QuAdmin\Options\QuAdminModelOptions($config['qu_web_demo_model']);
                 },
+                'qu_other_demo_model' => function ($sm) {
+                    $config = $sm->get('Config');
+                    return new \QuAdmin\Options\QuAdminModelOptions($config['qu_other_demo_model']);
+                },
             ),
         );
     }
@@ -27,6 +31,7 @@ class Module
         $configFiles = array(
             __DIR__ . '/config/module.config.php',
             __DIR__ . '/config/web.demo.config.php',
+            __DIR__ . '/config/other.demo.config.php',
         );
         foreach($configFiles as $configFile) {
             $config = \Zend\Stdlib\ArrayUtils::merge($config, include $configFile);
