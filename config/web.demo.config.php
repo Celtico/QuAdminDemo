@@ -346,7 +346,11 @@ return array(
                         ),
                         'attributes' => array(
                             'type' => 'textarea',
-                            'class'=>'CkEditor','id'=>'editor'
+                            'id'=>'editor',
+                            'ck-editor'=>array(
+                                'tools'=>'medium',
+                                'height'=>'100',
+                            ),
                         ),
                     ),
                     'filter' => array(
@@ -375,7 +379,11 @@ return array(
                         'options' => array('label' => 'content'),
                         'attributes' => array(
                             'type' => 'textarea',
-                            'class'=>'CkEditor','id'=>'editor2'
+                            'id'=>'editor2',
+                            'ck-editor'=>array(
+                                'tools'=>'large',
+                                'height'=>'250',
+                            ),
                         ),
                     ),
                     //filter zf2 standard for reused

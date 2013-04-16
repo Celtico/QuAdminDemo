@@ -42,7 +42,8 @@ class QuOtherDemoController extends AbstractController
     {
         $this->getQuAdminService();
         $quAdmin = $this->qu_admin_service->getEdit();
-        return $quAdmin->getViewModel();
+        /*Your ViewModel*/
+        return $quAdmin->getVariables();
     }
 
 

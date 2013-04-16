@@ -202,7 +202,7 @@ return array(
                     'type' =>'Zend\Form\Fieldset',
                     'name' => 'languages',
                     'options' => array(
-                        'label' => 'Data serialized',
+                        'label' => 'Data serialized (form generated from the database)',
                     ),
                     'attributes' => array(
                         'class' =>'text-3',
@@ -243,7 +243,7 @@ return array(
                     'type' =>'Zend\Form\Fieldset',
                     'name' => 'id_parameters',
                     'options' => array(
-                        'label' => 'Data explode',
+                        'label' => 'Data explode (form generated from the database)',
                     ),
                     'attributes' => array(
                         'class' =>'multi-checkbox-3',

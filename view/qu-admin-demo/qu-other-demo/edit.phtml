@@ -1,0 +1,218 @@
+<?php
+
+    echo $this->qu_admin_bread_crumb($options,$id,$route,$lang);
+    $form = $this->form;
+    $form->setAttribute('action',$this->url($route ,array('action' => $action,'id'=>$id,'lang'=>$lang)));
+    $form->setAttribute('enctype', 'multipart/form-data');
+    $form->setAttribute('id', $action);
+    $form->prepare();
+    echo $this->form()->openTag($form) . PHP_EOL;
+    echo $this->formElement($form->get('csrf'));
+
+?>
+
+
+<div class="nav-actions-absolute">
+    <div class="nav-actions">
+        <?php echo $this->qu_admin_title_by_db($options,$key,$route); ?>
+        <?php echo $this->qu_admin_add($route,$id,$lang,$options,$action); ?>
+        <?php echo $this->qu_admin_languages($options,$route,$lang,$action,$id); ?>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<div class="nav-actions-height"></div>
+
+
+    <?php if($this->formElementErrors($form->get('csrf'))){ ?>
+        <div class="alert alert-info">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <p><?php echo $this->formElementErrors($form->get('csrf')); ?></p>
+        </div>
+    <?php } ?>
+
+    <?php /* if(isset($error)){ ?>
+        <pre> <?php $t = "var_dump($error)"; ?>  </pre>
+    <?php } */ ?>
+
+    <?php echo $this->qu_admin_messages(); ?>
+
+    <div class="form row-fluid">
+        <div class="span9 fromIn">
+            <?php
+
+            $grid3         = array();
+            $ckEditor      = array();
+            $grid          = '';
+
+            foreach ($form->getFieldsets() as $nameField => $FieldSets){
+
+                $FieldGrid   = $FieldSets->getAttribute('span');
+                $FieldClass  = $FieldSets->getAttribute('class');
+                $Name        = $FieldSets->getName();
+
+                if($FieldSets->getLabel()){
+                    if($FieldGrid != 'span3'){
+
+                            echo   '<fieldset class="formBlock '.$FieldClass.' '.$FieldSets->getName().'"><legend><span>';
+                            echo   $FieldSets->getLabel();
+                            echo   '</span></legend>';
+
+                    } else{
+
+                            $n  = $FieldSets->getName();
+                            $grid  = '<fieldset class="formBlock '.$FieldClass.' '.$FieldSets->getName().'"><legend><span>';
+                            $grid .= $FieldSets->getLabel();
+                            $grid .= '</span></legend>';
+
+                    }
+                }
+
+                $numField = count($FieldSets);
+                $count    = 0;
+
+                foreach ($FieldSets as $name =>$Element){
+                    $count++;
+
+                    if($Element->getAttribute('type') == 'select'){
+                        $css = ' searchDrop';
+                    }else{
+                        $css   = false;
+                    }
+
+                    $elemClass = $Element->getAttribute('class');
+                    $elemId    = $Element->getAttribute('id');
+                    $elemGrid  = $Element->getAttribute('span');
+                    $elemCk    = $Element->getAttribute('ck-editor');
+
+                    if($elemCk){
+
+                        echo ' <div class="row-fluid">';
+                        echo   $this->formElement($Element);
+                        echo   $this->formElementErrors($Element);
+                        echo ' </div>';
+                        $ckEditor[$elemId] = $elemCk;
+
+                    }elseif($elemGrid == 'span3'){
+
+                        $grid .= ' <div class="row-fluid"><div class="span3">';
+                        $grid .= $Element->getLabel();
+                        $grid .= ' </div><div class="span9'. $css .'">';
+                        $grid .= $this->formElement($Element);
+                        $grid .= ' </div><label generated="true" class="error">';
+                        $grid .= $this->formElementErrors($Element);
+                        $grid .= ' </label><div class="clear"></div></div>';
+
+
+                    }else{
+
+                        echo ' <div class="row-fluid"><div class="span3">';
+                        echo   $Element->getLabel();
+                        echo ' </div><div class="span9'. $css .'">';
+                        echo   $this->formElement($Element);
+                        echo ' <label generated="true" class="error">';
+                        echo   $this->formElementErrors($Element);
+                        echo ' </label></div><div class="clear"></div></div>';
+                    }
+
+
+                    if($numField  ==  $count)
+                    {
+                        if($elemGrid == 'span3')
+                        {
+                           $grid  .= ' </fieldset>';
+                            $grid3[$n] =  $grid;
+                        }
+                        else
+                        {
+                           echo '</fieldset>';
+                        }
+                    }
+
+                }
+            }
+            ?>
+
+        </div>
+        <div class="span3 fromIn">
+
+            <?php  foreach($grid3 as $n){ echo $n;  } ?>
+
+            <? /// FILE UPLOAD ///////////// ///////////// ?>
+
+            <?php if($options->getDocuments()){   ?>
+                <fieldset class="formBlock">
+                    <legend>
+                        <span>Multiple files uploader</span>
+                    </legend>
+                    <div class="row-fluid">
+                        <div class="PluploadLoad"><?=$this->QuPluploadHelpLoad($id,$route,$options)?></div>
+                        <div class="clear"></div>
+                        <div id="uploader"></div>
+                        <?=$this->QuPluploadHelp('uploader',$id,$options->getTableName(),$route)?>
+                    </div>
+                </fieldset>
+            <? } ?>
+
+            <? /// FILE UPLOAD ///////////// ///////////// ?>
+
+        </div>
+    </div>
+
+    <?php  echo $this->form()->closeTag($form) . PHP_EOL ?>
+
+    <?php
+
+    if(isset($ckEditor)){
+
+        foreach($ckEditor as $id => $editor){
+
+            if(isset($editor['tools']) and $editor['tools'] == 'medium'){
+                $tools = array(
+                    'toolbarGroups' => false,
+                    'toolbar' => array(
+                    array( 'name'=> 'basicstyles',
+                        'groups' => array( 'basicstyles', 'cleanup' ),
+                        'items' => array( 'Bold', 'Italic', 'Strike', '-', 'RemoveFormat' ),
+                    ),
+                    array( 'name'=> 'paragraph',
+                        'groups' => array( 'list', 'indent', 'blocks', 'align' ),
+                        'items' => array( 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ),
+                    )
+                ));
+
+            }else{
+                $tools = array();
+            }
+
+            if(isset($editor['height'])){
+                $height = $editor['height'];
+            }else{
+                $height = 150;
+            }
+
+            $options = array(
+                'width' => '100%',
+                'height' => $height,
+                'uiColor'=> '#F4F4F4'
+            );
+
+            $this->QuCKEditor($id,array_merge($options,$tools));
+
+        }
+    }
+
+    ?>
+
+<pre>
+CREATE TABLE `qu-other-demo` (
+`id_other_demo` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+`id_author` bigint(20) unsigned NOT NULL DEFAULT '0',
+`name` varchar(200) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+`title` text COLLATE utf8_unicode_ci NOT NULL,
+`languages` text COLLATE utf8_unicode_ci NOT NULL,
+`id_parameters` text COLLATE utf8_unicode_ci NOT NULL,
+`order` int(11) NOT NULL DEFAULT '0',
+`status` varchar(20) COLLATE utf8_unicode_ci DEFAULT 'publish',
+PRIMARY KEY (`id_other_demo`)
+);
+</pre>
