@@ -48,6 +48,20 @@ class Module implements BootstrapListenerInterface
                     $config = $sm->get('Config');
                     return new \QuAdmin\Options\QuAdminModelOptions($config['qu_other_demo_model']);
                 },
+                'qu_content_model' => function ($sm) {
+                    $config = $sm->get('Config');
+                    return new \QuAdmin\Options\QuAdminModelOptions($config['qu_content_model']);
+                },
+                'qu_categories_model' => function ($sm) {
+                    $config = $sm->get('Config');
+                    return new \QuAdmin\Options\QuAdminModelOptions($config['qu_categories_model']);
+                },
+
+                'qu_features_model' => function ($sm) {
+                    $config = $sm->get('Config');
+                    return new \QuAdmin\Options\QuAdminModelOptions($config['qu_features_model']);
+                },
+
             ),
         );
     }
@@ -56,9 +70,13 @@ class Module implements BootstrapListenerInterface
     {
         $config = array();
         $configFiles = array(
-            __DIR__ . '/config/module.config.php',
+
             __DIR__ . '/config/web.demo.config.php',
             __DIR__ . '/config/other.demo.config.php',
+            __DIR__ . '/config/content.config.php',
+            __DIR__ . '/config/categories.config.php',
+            __DIR__ . '/config/features.config.php',
+            __DIR__ . '/config/module.config.php',
         );
         foreach($configFiles as $configFile) {
             $config = \Zend\Stdlib\ArrayUtils::merge($config, include $configFile);

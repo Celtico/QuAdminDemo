@@ -12,6 +12,7 @@ return array(
         'invokables' => array(
             'QuAdminDemo' => 'QuAdminDemo\Controller\QuAdminDemoController',
             'other_demo_controller' => 'QuAdminDemo\Controller\QuOtherDemoController',
+            'categories'    => 'QuAdminDemo\Controller\Categories',
         ),
     ),
     'router' => array(
@@ -44,7 +45,7 @@ return array(
                             'defaults' => array(
                                 'lang'          => 'es',
                                 'controller'    => 'QuAdminDemo',
-                                'action'        => 'index',
+
                             ),
                         ),
                     ),
@@ -62,11 +63,29 @@ return array(
                             'defaults' => array(
                                 'lang'          => 'es',
                                 'controller'    => 'other_demo_controller',
-                                'action'        => 'index',
+
                             ),
                         ),
                     ),
+                    'categories_route' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route' => '[/:lang]/categories[/:action][/:model][/:id][/:id_parent]',
+                            'constraints' => array(
+                                'lang'      => '[a-z]{2}(-[A-Z]{2}){0,1}',
+                                'action'    => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'model'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id'        => '[0-9]*',
+                                'id_parent' => '[0-9]*',
+                            ),
+                            'defaults' => array(
+                                'lang'          => 'es',
+                                'controller'    => 'categories',
 
+
+                            ),
+                        ),
+                    ),
                 ),
             ),
         ),
@@ -90,6 +109,12 @@ return array(
                 'label' => 'Qu Admin Demo',
                 'route' => 'admin-demo/test_route',
                 'pages' => array(
+
+                    'categories' => array(
+                        'icon'  => '&#xe1a4;',
+                        'label' => 'Models Editor',
+                        'route' => 'admin-demo/categories_route',
+                    ),
                     'test_route' => array(
                         'icon'  => '&#xe221;',
                         'label' => 'Demo Editor',

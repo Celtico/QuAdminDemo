@@ -1,34 +1,34 @@
 <?php
 
-    echo $this->qu_admin_bread_crumb($options,$id,$route,$lang);
-    $form = $this->form;
-    $form->setAttribute('action',$this->url($route ,array('action' => $action,'id'=>$id,'lang'=>$lang)));
-    $form->setAttribute('enctype', 'multipart/form-data');
-    $form->setAttribute('id', $action);
-    $form->prepare();
-    echo $this->form()->openTag($form) . PHP_EOL;
-    echo $this->formElement($form->get('csrf'));
+echo $this->qu_admin_bread_crumb($options,$id,$route,$lang,$model,$this->mergeBreadCrumbModels);
+$form = $this->form;
+$form->setAttribute('action',$this->url($route ,array('action' => $action,'model' => $model,'id'=>$id,'lang'=>$lang)));
+$form->setAttribute('enctype', 'multipart/form-data');
+$form->setAttribute('id', $action);
+$form->prepare();
+echo $this->form()->openTag($form) . PHP_EOL;
+echo $this->formElement($form->get('csrf'));
 
 ?>
 
 
 <div class="nav-actions-absolute">
     <div class="nav-actions">
-        <?php echo $this->qu_admin_title_by_db($options,$key,$route); ?>
-        <?php echo $this->qu_admin_add($route,$id,$lang,$options,$action); ?>
-        <?php echo $this->qu_admin_languages($options,$route,$lang,$action,$id); ?>
+        <?php echo $this->qu_admin_title_by_db($options,$key,$route,$model); ?>
+        <?php echo $this->qu_admin_add($route,$id,$lang,$options,$action,$model); ?>
+        <?php echo $this->qu_admin_languages($options,$route,$lang,$action,$id,$model); ?>
         <div class="clearfix"></div>
     </div>
 </div>
 <div class="nav-actions-height"></div>
 
 
-    <?php if($this->formElementErrors($form->get('csrf'))){ ?>
-        <div class="alert alert-info">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <p><?php echo $this->formElementErrors($form->get('csrf')); ?></p>
-        </div>
-    <?php } ?>
+<?php if($this->formElementErrors($form->get('csrf'))){ ?>
+    <div class="alert alert-info">
+        <button type="button" class="close" data-dismiss="alert">×</button>
+        <p><?php echo $this->formElementErrors($form->get('csrf')); ?></p>
+    </div>
+<?php } ?>
 
     <?php /* if(isset($error)){ ?>
         <pre> <?php $t = "var_dump($error)"; ?>  </pre>

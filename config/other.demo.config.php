@@ -75,7 +75,7 @@ return array(
             'id_parameters',
         ),
 
-        'linkerModels'      => false,
+        'linkerModels'      => array(),
         'linkerParent'      => false,
         'optionsPaginator'  => array(
             'n'=>10,

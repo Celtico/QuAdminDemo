@@ -4,8 +4,6 @@
  * @Contact: cel@cenics.net
  * @Company: Cencis s.c.p.
  */
-
-
 return array(
 
 
@@ -16,7 +14,7 @@ return array(
      *
      *
      */
-    'qu_web_demo_model'=>array(
+    'qu_features_model' => array(
         /**
          *
          *
@@ -25,12 +23,12 @@ return array(
          *
          */
 
-        'tableName'            => 'qu-web-demo',
-        'tableLabel'           => 'QuAdminDemo',
-        'entity'               => 'QuAdminDemo\Entity\QuAdminDemo',
+        'tableName'            => 'qu-features',
+        'tableLabel'           => 'Features',
+        'entity'               => 'QuAdminDemo\Entity\Categories',
         'tableKeyFields'       => array(
 
-            'key_id'            => 'id_web',
+            'key_id'            => 'id_features',
             'key_name'          => 'name',
             'key_title'         => 'title',
 
@@ -45,19 +43,20 @@ return array(
 
             'key_order'         => 'order',
 
-            'key_level'         => false,
-            'key_path'          => false,
+            'key_level'         => 0,
+            'key_path'          => 0,
 
             'key_icon'         => 'icon',
         ),
 
         'tableFieldsCleanData'=> array(
-            'id_web',
+
+            'id_features',
             'id_parent',
             'id_author',
             'id_lang',
-            'name',
             'order',
+            'name',
             'date',
             'modified',
             'status',
@@ -67,40 +66,20 @@ return array(
             'summary',
             'content',
             'icon',
+            'meta_title',
+            'meta_description',
+            'meta_keywords',
+
         ),
 
         'linkerModels'      => array(),
-        'linkerParent'      => 5,
-        'optionsPaginator'  => array('n'=>10,'p'=>1),
+        'linkerParent'      => 0,
+        'optionsPaginator'  => array('n'=>5,'p'=>1),
         'defaultLanguage'   => 'es',
         'optionsOrder'      => 'order desc',
 
-        'documents'         =>  array(
-            'tableName'            => 'qu-plupload',
-            'DirUpload'          => '/uploads/files/web-demo',
-            //In Module
-            'DirUploadAbsolute'  =>  dirname(dirname(dirname(__DIR__)))  . '/web/uploads/files/web-demo',
-            //In Vendor
-           //'DirUploadAbsolute'  => dirname(dirname(dirname(dirname(__DIR__))))  . '/public/uploads/files/web-demo',
-            'Resize'             => array('1200','900'), //$width, $height
-            'ThumbResize'        => array(
+        'documents'         => 0,
 
-                /* Properties  GdThumb Class Definition
-
-                public function resize ($maxWidth = 0, $maxHeight = 0)
-                public function adaptiveResize ($width, $height)
-                public function resizePercent ($percent = 0)
-                public function cropFromCenter ($cropWidth, $cropHeight = null)
-                public function crop ($startX, $startY, $cropWidth, $cropHeight)
-
-                */
-
-                'xl' => array('resize','1170','420'),
-                'l'  => array('resize','600','550'),
-                'm'  => array('resize','500','418'),
-                's'  => array('adaptiveResize','30','20'),
-            ),
-        ),
 
         /**
          *
@@ -125,38 +104,42 @@ return array(
                     ),
                     'attributes' => array(
                         'span' =>'span3',
-                        'class' =>'fieldset-collapse',
                     ),
                 ),
+
                 /**
-                 * key
+                 * key form
                  * for example input name
                  */
                 'status' => array(
-                    //form zf2 standard for reused
                     'form' => array(
                         'type' => 'Zend\Form\Element\Select',
                         'name'     => 'status',
                         'options' => array(
                             'label' => 'Status',
-                            'value_options' => array(
+                        ),
+                        'attributes' =>  array(
+                            'options' => array(
                                 'Public'    =>'Public',
-                                'Previous'  =>'Previous',
                                 'Private'   =>'Private',
                             ),
-                        ),
-                        'attributes' => array(
-                            'type' => 'select',
                             'class'=>'fullwidth select',
                             'span'=>'span3',
 
                         ),
+
+
                     ),
-                    //filter zf2 standard for reused
-                    'filter' => array('name'=> 'status','required' => false,),
+                    'filter' => array(
+                        'name'     => 'status',
+                        'required' => false,
+                    ),
                 ),
 
-
+                /**
+                 * key form
+                 * for example input name
+                 */
                 'name' => array(
                     'form' => array(
                         'name'     => 'name',
@@ -187,85 +170,6 @@ return array(
                         ),
                     ),
                 ),
-            ),
-            'GroupLinkers' => array(
-                'serialized' => false,
-                'fieldset'=> array(
-                    'type' =>'Zend\Form\Fieldset',
-                    'name' => 'linkers',
-                    'options' => array(
-                        'label' => 'Linkers',
-                    ),
-                    'attributes' => array(
-                        'span' =>'span3',
-                        'class' =>'',
-                    ),
-                ),
-                'id_parent' => array(
-                    //form zf2 standard for reused
-                    'form' => array(
-                        'type' => 'Zend\Form\Element\Select',
-                        'name'     => 'id_parent',
-                        'options' => array(
-                            'label' => 'Parent',
-
-                        ),
-                        'attributes' => array(
-                            'type' => 'select',
-                            'class'=>'fullwidth select',
-                            'span'=>'span3'
-                        ),
-                    ),
-                    //filter zf2 standard for reused
-                    'filter' => array('name'=> 'status','required' => false,),
-
-                    /**
-                     * Add set Attributes options on database
-                     */
-                    'attributes' => array(
-                            'name' => 'id_parent',
-                            'database' => 'qu_web_demo_model',
-                            'fieldKeyName' => 'id_parent',
-                            'fieldKeyLabel' => 'title',
-                            'fieldKeyLabelParent' => true,
-                            'where' => '',
-                            'order' => 'order asc',
-                    ),
-
-                ),
-
-                'parameters' => array(
-                    //form zf2 standard for reused
-                    'form' => array(
-                        'type' => 'Zend\Form\Element\Select',
-                        'name'     => 'parameters',
-                        'options' => array(
-                            'label' => 'Parameters',
-                            'options' => array(),
-                        ),
-                        'attributes' => array(
-                            'type' => 'select',
-                            'class'=>'fullwidth select',
-                            'span'=>'span3',
-
-                        ),
-                    ),
-                    //filter zf2 standard for reused
-                    'filter' => array('name'=> 'parameters','required' => false,),
-
-                    /**
-                     * Add set Attributes options on database
-                     */
-                    'attributes' => array(
-                        'name' => 'parameters',
-                        'database' => 'qu_parameters_model',
-                        'fieldKeyName' => 'name',
-                        'fieldKeyLabel' => 'title',
-                        'fieldKeyLabelParent' => true,
-                        'where' => array('id_parent'=>18),
-                        'order' => 'order asc',
-                    ),
-                ),
                 /**
                  * key form
                  * for example input name
@@ -294,7 +198,7 @@ return array(
                     'type' =>'Zend\Form\Fieldset',
                     'name' => 'cont',
                     'options' => array(
-                        'label' => 'Categories',
+                        'label' => 'Features',
                     ),
                 ),
 
@@ -320,16 +224,16 @@ return array(
                     ),
                 ),
             ),
+
             'GroupSummary' => array(
                 'serialized' => false,
                 'fieldset'=> array(
                     'type' =>'Zend\Form\Fieldset',
-                    'name' => 'GroupSummary',
+                    'name' => 'summary',
                     'options' => array(
                         'label' => 'Summary',
                     ),
                     'attributes' => array(
-                        'class' =>'',
 
                     ),
                 ),
@@ -349,7 +253,7 @@ return array(
                             'id'=>'editor',
                             'ck-editor'=>array(
                                 'tools'=>'medium',
-                                'height'=>'100',
+                                'height'=>'150',
                             ),
                         ),
                     ),
@@ -359,43 +263,6 @@ return array(
                     ),
                 ),
             ),
-            'GroupContent' => array(
-                'serialized' => false,
-                'fieldset'=> array(
-                    'type' =>'Zend\Form\Fieldset',
-                    'name' => 'GroupContent',
-                    'options' => array(
-                        'label' => 'Content',
-                    ),
-                ),
-                /**
-                 * key form
-                 * for example input name
-                 */
-                'content' => array(
-                    'form' => array(
-                        //form zf2 standard for reused
-                        'name'     => 'content',
-                        'options' => array('label' => 'content'),
-                        'attributes' => array(
-                            'type' => 'textarea',
-                            'id'=>'editor2',
-                            'ck-editor'=>array(
-                                'tools'=>'large',
-                                'height'=>'250',
-                            ),
-                        ),
-                    ),
-                    //filter zf2 standard for reused
-                    'filter' => array(
-                        'name' =>'content',
-                        'required' => false,
-                    ),
-                ),
-
-
-            ),
-
 
             /**
              * Out config form
