@@ -112,27 +112,27 @@ return array(
 
                     'categories' => array(
                         'icon'  => '&#xe1a4;',
-                        'label' => 'Models Editor',
+                        'label' => 'ModelsEditor',
                         'route' => 'admin-demo/categories_route',
                     ),
                     'test_route' => array(
                         'icon'  => '&#xe221;',
-                        'label' => 'Demo Editor',
+                        'label' => 'DemoEditor',
                         'route' => 'admin-demo/test_route',
                     ),
                     'other' => array(
                         'icon'  => '&#xe02e;',
-                        'label' => 'Other Editor',
+                        'label' => 'OtherEditor',
                         'route' => 'admin-demo/other_demo_route',
                     ),
                     'web-demo' => array(
                         'icon'  => '&#xe264;',
-                        'label' => 'Demo Web',
+                        'label' => 'DemoWeb',
                         'route'    => 'web-demo',
                     ),
                     'qumodules' => array(
                         'icon'  => '&#xe033;',
-                        'label' => 'Qu Modules',
+                        'label' => 'QuModules',
                         'route' => 'home',
                     ),
 
